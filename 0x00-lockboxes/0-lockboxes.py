@@ -1,7 +1,11 @@
 #!/usr/bin/env python
 
+""" Function that determines if all "boxes" can be unlocked """
+
+
 def canUnlockAll(boxes):
-    """ Returns T/F if all boxes can be unlocked """
+    """ Returns True if all boxes have reachable key """
+    # Initializes list of unlocked boxes with first box
     key_list = [0]
     # box is index of each box
     for box in range(len(boxes)):
