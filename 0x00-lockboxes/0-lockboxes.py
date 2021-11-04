@@ -4,7 +4,7 @@
 
 def canUnlockAll(boxes):
     """ Returns True if all boxes have reachable key """
-    if (boxes is None or len(boxes) == 0):
+    if not boxes:
         return False
     # Initializes list of unlocked boxes with first box
     key_list = [0]
@@ -18,7 +18,7 @@ def canUnlockAll(boxes):
                     if key not in key_list:
                         [key_list.append(key)]
     # Return if key_list contains key to all locked boxes
-    for lock in range(len(boxes)):
-        if lock not in key_list:
+    for box_key in range(len(boxes)):
+        if box_key not in key_list:
             return False
     return True
