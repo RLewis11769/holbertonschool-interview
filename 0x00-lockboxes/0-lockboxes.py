@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-
+#!/usr/bin/python3
 """ Function that determines if all "boxes" can be unlocked """
 
 
