@@ -4,6 +4,8 @@
 
 def canUnlockAll(boxes):
     """ Returns True if all boxes have reachable key """
+    if (boxes is None or len(boxes) == 0):
+        return False
     # Initializes list of unlocked boxes with first box
     key_list = [0]
     # box is index of each box
