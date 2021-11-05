@@ -15,11 +15,12 @@ def canUnlockAll(boxes):
             if test_key in key_list:
                 # key is reachable key as found in box where key is in key_list
                 for key in boxes[test_key]:
+                    # if already in list, break from loop to save memory
+                    if key in key_list:
+                        break
+                    # if not in list but needs to be, add to list
                     if key not in key_list:
                         key_list.append(key)
-                    # if found, break from loop to save memory
-                    else:
-                        break
     # Return if key_list contains key to all locked boxes
     for box_key in range(len(boxes)):
         if box_key not in key_list:
