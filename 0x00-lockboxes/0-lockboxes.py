@@ -4,20 +4,19 @@
 
 def canUnlockAll(boxes):
     """ Returns True if all boxes have reachable key """
-    # Adds 0 to list so will have starting list of keys to add
+    # Create a list of key_list with default box being 0
     key_list = [0]
-    # Copies all keys in box 0 to list to start list of keys to check (will be added onto)
-    test_key = boxes[0]
-    # Follow every key along its path opening boxes until can't anymore
-    # key is list of all available keys whether reachable or not
-    for key in test_key:
-        if key not in key_list:
-            # extend adds all keys in each box to list so will have new keys to check
-            test_key.extend(boxes[key])
-            key_list.append(key)
-
-    # Return if key_list contains key to all locked boxes
-    for box_key in range(len(boxes)):
-        if box_key not in key_list:
+    # box is index of box
+    # list is list of all keys inside each box
+    for box, list in enumerate(boxes):
+        # idx starts off at current box for each loop so not repeatedly checking
+        for idx in range(box, len(boxes)):
+            if idx in key_list:
+                # Same sort of appending as before
+                [key_list.append(key) for key in boxes[idx] if key not in key_list]
+        # Attempt to open box that met above else condition
+        if box in key_list:
+            [key_list.append(key) for key in list if key not in key_list]
+        else:
             return False
     return True
