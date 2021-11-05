@@ -17,7 +17,6 @@ def canUnlockAll(boxes):
                 for key in boxes[test_key]:
                     if key not in key_list:
                         key_list.append(key)
-                        break
     # Return if key_list contains key to all locked boxes
     for box_key in range(len(boxes)):
         if box_key not in key_list:
