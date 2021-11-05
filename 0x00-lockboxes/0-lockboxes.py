@@ -16,7 +16,8 @@ def canUnlockAll(boxes):
                 # key is reachable key as found in box where key is in key_list
                 for key in boxes[test_key]:
                     if key not in key_list:
-                        [key_list.append(key)]
+                        key_list.append(key)
+                        break
     # Return if key_list contains key to all locked boxes
     for box_key in range(len(boxes)):
         if box_key not in key_list:
