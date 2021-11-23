@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Function that determines minimum number of operations to reach n chars """
 
 
 def minOperations(n):
