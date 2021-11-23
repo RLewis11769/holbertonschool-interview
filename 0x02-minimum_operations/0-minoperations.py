@@ -20,47 +20,34 @@ def minOperations(n):
         """
         return (s * 2)
 
-    def paste(mains, copieds):
+    def paste(str1, str2):
         """
-        Returns str
+        Returns concatenated strings
 
         Args:
-            str: str to add to global variable string
+            str1: first string to concatenate (main string)
+            str: second string to concatenate (copied string)
         """
-        return (mains + copieds)
-
-    def checkString(s, n):
-        """
-        Returns true if current string has n characters
-
-        Args:
-            s: string to check length of
-            n: number of characters in s if true
-        """
-        if len(s) == n:
-            return True
-        return False
+        return (str1 + str2)
 
     string = "H"
-    ops = 2
+    ops = 0
 
-    while(1):
+    for x in range(n):
         if len(string) == n:
-            return ops
-        if len(string) > n:
-            return 0
-        else:
+            return (ops)
+        elif len(string) < n:
             ops += 1
             copy = copyAll(string)
-            checkOrig = checkString(copy, n)
-            if checkOrig:
-                return ops
+            if len(copy) == n:
+                return (ops + 1)
             else:
                 ops += 1
                 pasteDoubled = paste(string, copy)
-                checkDoubled = checkString(pasteDoubled, n)
-                if checkDoubled:
-                    return ops
-                else:
-                    ops += 1
+                if len(pasteDoubled) == n:
+                    return (ops + 1)
+                elif len(pasteDoubled) < n:
+                    ops += 2
                     string += pasteDoubled
+        else:
+            return 0
