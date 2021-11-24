@@ -12,22 +12,21 @@ def minOperations(n):
     """
     if n <= 1:
         return (0)
-    copyall = 0
-    paste = 0
     factor = 2
+    factor_list = []
     # Find prime factors that go into n
     while (n % factor > 0):
         factor += 1
     # After initial factorization, continue through loop until n is 1
     while (n % factor == 0):
-        copyall += 1
-        paste += (factor - 1)
+        factor_list.append(factor)
         # Check if factor is prime
         n = n / factor
-        # No more factors to check so done
+        # No more factors to check so done - go through list and add all index
         if (n == 1):
-            return (copyall + paste)
+            for idx in factor_list:
+                return (sum(factor_list))
         # Find prime factors higher than initial factor
         while (n % factor > 0):
             factor += 1
-    return (copyall + paste)
+    print(list)
