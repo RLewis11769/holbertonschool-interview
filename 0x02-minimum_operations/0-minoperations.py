@@ -8,26 +8,28 @@ def minOperations(n):
     Can only execute "copy all" and "paste"
 
     Args:
-        n: number of H characters aka number to reach
+        n: number of H characters
     """
+    string = "H"
+    ops = 0
+
     if n <= 1:
         return (0)
-    copyall = 0
-    paste = 0
-    factor = 2
-    # Find prime factors that go into n
-    while (n % factor > 0):
-        factor += 1
-    # After initial factorization, continue through loop until n is 1
-    while (n % factor == 0):
-        copyall += 1
-        paste += (factor - 1)
-        # Check if factor is prime
-        n = n / factor
-        # No more factors to check so done
-        if (n == 1):
-            return (copyall + paste)
-        # Find prime factors higher than initial factor
-        while (n % factor > 0):
-            factor += 1
-    return (copyall + paste)
+    for x in range(n):
+        if len(string) == n:
+            return (ops)
+        elif len(string) < n:
+            ops += 1
+            copy = string * 2
+            if len(copy) == n:
+                return (ops + 1)
+            else:
+                ops += 1
+                pasteDoubled = string + copy
+                if len(pasteDoubled) == n:
+                    return (ops + 1)
+                else:
+                    ops += 2
+                    string += pasteDoubled
+        else:
+            return (ops - 2)
