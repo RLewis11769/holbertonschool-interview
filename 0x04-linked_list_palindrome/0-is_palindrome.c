@@ -7,44 +7,34 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *current = *head;
-	int list_size = 0;
-	int *array = NULL;
-	int x = 0;
-
 	if (!head || !*head)
 		return (1);
 
-	/* Count number of nodes in list */
-	while (current)
-	{
-		current = current->next;
-		list_size++;
-	}
+	return (check_palindrome_rec(head, *head));
+}
 
-	/* Create array of size list_size */
-	array = malloc(sizeof(int) * list_size);
-	if (array == NULL)
+/**
+ * check_palindrome_rec - recursive check if linked list is palindrome
+ * @left: pointer starts at head of list, ends at middle of list
+ * @right: pointer starts at second in list, ends at last node
+ * Return: 1 if palindrome, 0 if not
+ */
+int check_palindrome_rec(listint_t **left, listint_t *right)
+{
+	/* Base case - end of list */
+	if (right == NULL)
+		return (1);
+
+	/* When uncurls, left at start and right at end */
+	if (check_palindrome_rec(left, right->next) == 0)
 		return (0);
 
-	/* Set current back to head of list */
-	current = *head;
-	/* Fill array with values from list */
-	while (current)
-	{
-		array[x] = current->n;
-		current = current->next;
-		x++;
-	}
+	/* Check if left and right nodes are equal */
+	if ((*left)->n != right->n)
+		return (0);
 
-	/* Set current back to head of list */
-	current = *head;
-	/* Check if palindrome */
-	for (x = 0; x < list_size / 2; x++)
-	{
-		if (array[x] != array[list_size - x - 1])
-			return (0);
-	}
+	/* Move left pointer to next node to keep up with uncurling */
+	*left = (*left)->next;
 
 	return (1);
 }
