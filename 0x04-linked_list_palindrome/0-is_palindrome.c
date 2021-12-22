@@ -7,69 +7,44 @@
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *mid = *head;
-	listint_t *end = *head;
-	listint_t *prev = NULL;
-	listint_t *next = NULL;
-	listint_t *tmp = NULL;
+	listint_t *current = *head;
+	int list_size = 0;
+	int *array = NULL;
+	int x = 0;
 
 	if (!head || !*head)
 		return (1);
 
-	return (check_if_palindrome(mid, end, prev, next, tmp));
-}
-
-
-/**
- * check_if_palindrome - check for palindrome
- * @mid: pointer to pointer in middle of list
- * @end: pointer to pointer at end of list
- * @prev: pointer to node directly before mid
- * @next: pointer to node directly after mid
- * @tmp: pointer to temporary node that is used to check for palindrome
- * Return: 1 if palindrome, 0 if not
- */
-int check_if_palindrome(listint_t *mid, listint_t *end,
-	listint_t *prev, listint_t *next, listint_t *tmp)
-{
-	while (end && end->next)
+	/* Count number of nodes in list */
+	while (current)
 	{
-		/* Set prev pointer as previous node of mid */
-		prev = mid;
-		/* Send mid pointer to middle of the list */
-		mid = mid->next;
-		/* Send end pointer to end of the list */
-		end = end->next->next;
+		current = current->next;
+		list_size++;
 	}
 
-	/* If list has odd number of nodes, skip middle node */
-	if (end)
-		mid = mid->next;
+	/* Create array of size list_size */
+	array = malloc(sizeof(int) * list_size);
+	if (array == NULL)
+		return (0);
 
-	/* Reverse list from middle node */
-	while (mid)
+	/* Set current back to head of list */
+	current = *head;
+	/* Fill array with values from list */
+	while (current)
 	{
-		/* Save next node of mid */
-		next = mid->next;
-		/* Reverse next node of mid */
-		mid->next = tmp;
-		/* Save mid node */
-		tmp = mid;
-		/* Move mid pointer to next node */
-		mid = next;
+		array[x] = current->n;
+		current = current->next;
+		x++;
 	}
 
-	/* Compare the list with the reversed list */
-	while (tmp)
+	/* Set current back to head of list */
+	current = *head;
+	/* Check if palindrome */
+	for (x = 0; x < list_size / 2; x++)
 	{
-		/* If any node is not same, return 0 */
-		if (tmp->n != prev->n)
+		if (array[x] != array[list_size - x - 1])
 			return (0);
-		/* Move prev and tmp pointers to next nodes */
-		tmp = tmp->next;
-		prev = prev->next;
 	}
 
-	/* If all nodes are same, return 1 */
 	return (1);
 }
