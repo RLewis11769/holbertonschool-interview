@@ -39,13 +39,14 @@ Return true if and only if you can enter every box.
 
 ### 0-lockboxes.py
 - Successful attempt!
+- The logic is:
 
 ### loop.py
 - Failed attempt due to memory issues but overall working code
 	- My logic-based attempt (other solutions were found online)
-	- Looping too many times and hitting max memory limit (aka not very efficient) but I can't figure out how to loop less/break
+	- Looping too many times and hitting max memory limit on the last test in main (aka not very efficient) but I can't figure out how to loop less/break
 
 ### recursive.py
 - Failed attempt due to memory issues but overall working code
 - Recursive depth limit is around 1000 stack frame limit to prevent stack overflow
-	- This means that last test in main is designed to prevent recursive solutions
+	- This means that the last test in main is designed to prevent recursive solutions

@@ -15,7 +15,12 @@ If n is impossible to achieve, return 0.
 #### Input: n = 9
 - Output: 6
 - Explanation:
-H => Copy All (1) => Paste (2) => HH => Paste (3) => HHH => Copy All (4) => Paste (5) => HHHHHH => Paste (6) => HHHHHHHHH
+**H** => Copy All (1) => Paste (2) => **HH** => Paste (3) => **HHH** => Copy All (4) => Paste (5) => **HHHHHH** => Paste (6) => **HHHHHHHHH**
+
+#### Input: n = 12
+- Output: 7
+- Explanation:
+*H* => Copy All (1) => Paste (2) => **HH** => Paste (3) => **HHH** => Copy All (4) => Paste (5) => **HHHHHH** => Copy All (6) => Paste (7) => **HHHHHHHHHHHH**
 
 ### Navigation
 
@@ -26,25 +31,26 @@ H => Copy All (1) => Paste (2) => HH => Paste (3) => HHH => Copy All (4) => Past
 ### 0-minoperations.py
 - Successful attempt!
 - Based off the wonderful, amazing [Brian Kong](https://github.com/rkbrian) and his incredible math who posted:
-	- My logic for minimum operation: loop (copy_all + paste + paste + paste + ...paste n times) = amount + amount + ...= amount * (n + 1); loop (copy_all + paste + copy_all + paste + ...(copy_all + paste) n times) = amount * amount * ... = amount ^ (n + 1). The latter saves moves. If you use the loops properly, this problem will became prime factorization, e.g., input = 120 = 2x2x2x3x5, total min ops = 2+2+2+3+5 = 14
-	- SO prime factorization:
-		- Start dividing n from smallest prime number aka 2
-		- If divisible by 2 but not a prime number, divide again
-		- If not divisible by 2, try 3, 5, 7, etc.
-		- When all factors are prime numbers, have found answer
-			- Examples:
-				- 12 = 2 * 2 * 3
-				- 147 = 3 * 7 * 7
-				- 17 = 17
-		- As Brian mentioned, adding the factors will get the number of minimum operations
+	> My logic for minimum operation: loop (copy_all + paste + paste + paste + ...paste n times) = amount + amount + ...= amount * (n + 1); loop (copy_all + paste + copy_all + paste + ...(copy_all + paste) n times) = amount * amount * ... = amount ^ (n + 1). The latter saves moves. If you use the loops properly, this problem will became prime factorization, e.g., input = 120 = 2x2x2x3x5, total min ops = 2+2+2+3+5 = 14
+- SO prime factorization:
+	- Start dividing n from smallest prime number aka 2
+	- If divisible by 2 but not a prime number, divide again
+	- If not divisible by 2, try 3, 5, 7, etc.
+	- When all factors are prime numbers, have found answer
+		- Examples:
+			- 12 = 2 * 2 * 3 = 7
+			- 147 = 3 * 7 * 7 = 17
+			- 17 = 17
+	- As Brian mentioned, adding the factors will get the number of minimum operations
+	- So I am simply returning the sum of the factor list. If 2, 3, and 3 are the prime factors of 12, as seen above, the number of minimum operations for 12 is 2 + 2 + 3, or 7.
 
 ### just_math.py
 - Another successful attempt!
 - Also based off of Brian's prime factorization logic
 - Increase copyall by one every loop and paste by the last prime number you checked - 1
-	- Basically just get the number of times each is done/factorized rather than adding the factors
+	- Basically just calculate the number of times each operation is done/factorized rather than actually adding the factors.
 
 ### loop.py
 - Failed attempt
 - Based off of my logic
-	- Final else loop is too simplified when loop multiple times but would require a convoluted loop to fix
+	- Final else loop is too simplified when loop multiple times but would require a convoluted loop to fix and I'm not interested in writing it
