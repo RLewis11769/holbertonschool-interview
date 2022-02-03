@@ -25,11 +25,11 @@ int slide_line(int *line, size_t size, int direction)
 	}
 
 	/* Fill in remainder of array with zeros */
-	for (; y < size - 1; y++)
+	for (; y < size; y++)
 		array[y] = 0;
 
 	/* Copy array back into orig array */
-	for (x = 0; x < size - 1; x++)
+	for (x = 0; x < size; x++)
 		line[x] = array[x];
 
 	if (direction == SLIDE_LEFT)
