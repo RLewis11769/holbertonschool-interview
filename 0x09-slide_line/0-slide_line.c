@@ -11,7 +11,7 @@
 int slide_line(int *line, size_t size, int direction)
 {
 	size_t x, y;
-	int array[size];
+	int array[32];
 
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
 		return (0);
