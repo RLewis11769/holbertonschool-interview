@@ -43,7 +43,7 @@ int slide_line(int *line, size_t size, int direction)
 	{
 		for (x = size - 1; x > 0; x--)
 			if (line[x] == line[x - 1])
-				right_shift(line, size, x);
+				right_shift(line, x);
 	}
 	return (1);
 }
@@ -68,10 +68,9 @@ void left_shift(int *line, size_t size, size_t x)
 /**
  * right_shift - Shifts an array to the right by one
  * @line: Pointer to the array to shift
- * @size: Number of elements in array
  * @x: Index of the element to shift
  */
-void right_shift(int *line, size_t size, size_t x)
+void right_shift(int *line, size_t x)
 {
 	/* Double value of current element */
 	line[x] *= 2;

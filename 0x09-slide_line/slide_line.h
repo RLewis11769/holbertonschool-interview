@@ -8,6 +8,6 @@
 
 int slide_line(int *line, size_t size, int direction);
 void left_shift(int *line, size_t size, size_t x);
-void right_shift(int *line, size_t size, size_t x);
+void right_shift(int *line, size_t x);
 
 #endif
