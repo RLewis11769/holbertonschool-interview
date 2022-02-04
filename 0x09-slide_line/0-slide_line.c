@@ -15,7 +15,7 @@ int slide_line(int *line, size_t size, int direction)
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
 		return (0);
 
-	// Remove all zeros from array
+	/* Remove all zeros from array */
 	for (x = 0, y = 0; x < size; x++)
 		if (line[x] != 0)
 			line[y++] = line[x];
@@ -75,6 +75,11 @@ void right_shift(int *line, size_t x)
 	line[0] = 0;
 }
 
+/**
+ * right_move - Moves non-zeros in array to far right, filling start with zeros
+ * @line: Pointer to the array to shift
+ * @size: Number of elements in array
+ */
 void right_move(int *line, size_t size)
 {
 	size_t x, y;
