@@ -15,17 +15,14 @@ int slide_line(int *line, size_t size, int direction)
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
 		return (0);
 
-	/* Remove all zeros from array */
+	/* Remove all zeros from array to put non-zeroes at left/start of array */
 	for (x = 0, y = 0; x < size; x++)
 		if (line[x] != 0)
 			line[y++] = line[x];
 
 	/* Fill in remainder of array with zeros */
-	if (direction == SLIDE_LEFT)
-		for (; y < size; y++)
-			line[y] = 0;
-	else
-		right_move(line, size);
+	for (; y < size; y++)
+		line[y] = 0;
 
 	if (direction == SLIDE_LEFT)
 	{
@@ -35,6 +32,7 @@ int slide_line(int *line, size_t size, int direction)
 	}
 	if (direction == SLIDE_RIGHT)
 	{
+		right_move(line, size);
 		for (x = size - 1; x > 0; x--)
 			if (line[x] == line[x - 1])
 				right_shift(line, x);
@@ -85,11 +83,10 @@ void right_move(int *line, size_t size)
 	size_t x, y;
 	int temp;
 
+	temp = line[0];
 	/* Pull all zeroes to front of array */
 	for (x = size - 1, y = 0; x > 0; x--)
 	{
-		/* Save value at first index */
-		temp = line[0];
 		/* Find last non-zero value */
 		if (!y)
 			y = x;
@@ -97,8 +94,7 @@ void right_move(int *line, size_t size)
 		if (line[x] != 0)
 			line[y--] = line[x];
 	}
-	if (line[0] != line[y])
-		line[y] = temp;
+	line[y] = temp;
 	/* Fill in start of array with zeros */
 	for (; y > 0; y--)
 		line[y - 1] = 0;
