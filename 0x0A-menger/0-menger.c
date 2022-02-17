@@ -1,14 +1,18 @@
 #include "menger.h"
 
+/**
+ * menger - prints a 2D menger sponge
+ * @level: level of the menger sponge
+ */
 void menger(int level)
 {
-	if (level < 0)
-		return;
-
 	/* Size is 3^level - meaning 0 for 0, 3 for 1, 9 for 2, etc. */
 	int size = pow(3, level);
 	int r_check = 0, c_check = 0;
 	int divisor, row, column, print;
+
+	if (level < 0)
+		return;
 
 	for (row = 0; row < size; row++)
 	{
